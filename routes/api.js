@@ -1,9 +1,18 @@
 'use strict';
+const apiController = require('../controllers/apiController');
 
-module.exports = function (app) {
+module.exports = function(app) {
+  // Routes for threads
+  app.route('/api/threads/:board')
+    .get(apiController.getThreads)
+    .post(apiController.createThread)
+    .put(apiController.reportThread)
+    .delete(apiController.deleteThread);
   
-  app.route('/api/threads/:board');
-    
-  app.route('/api/replies/:board');
-
+  // Routes for replies
+  app.route('/api/replies/:board')
+    .get(apiController.getReplies)
+    .post(apiController.createReply)
+    .put(apiController.reportReply)
+    .delete(apiController.deleteReply);
 };
